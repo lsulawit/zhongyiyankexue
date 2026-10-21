@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf8ff">
+  <meta name="description" content="เกมทบทวนบทที่ 8 จักษุแพทย์จีน ตอน 5–10 เรียนทีละโรค ตอบคำถามสะสม XP และปลดล็อกสัตว์เลี้ยง 3D">
+  <title>Eye Pet Academy 🐾 | 眼科小伙伴</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+<div id="app" class="app-shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">👁️</div>
+      <div><div class="brand-name">Eye Pet <span>Academy</span></div><div class="brand-sub">眼科小伙伴 · เรียนโรคตากับน้องสัตว์</div></div>
+    </div>
+    <div class="header-right">
+      <div class="xp-badge" title="คะแนนจากการตอบคำถามถูก"><span aria-hidden="true">✨</span><strong id="headerXP">0</strong><small>XP</small></div>
+      <div class="level-badge">LV.<strong id="headerLevel">1</strong></div>
+    </div>
+  </header>
+
+  <div class="nav-row" role="navigation" aria-label="เมนูหลัก">
+    <button class="nav-btn active" data-view="learn" type="button">📖 <span>เรียนทีละบท</span></button>
+    <button class="nav-btn" data-view="pets" type="button">🐾 <span>สัตว์เลี้ยง</span></button>
+    <button class="nav-btn" data-view="review" type="button">🧠 <span>ทบทวนรวม</span></button>
+  </div>
+
+  <main class="main-layout">
+    <section class="content-column" aria-label="บทเรียนและแบบทดสอบ">
+      <div id="learnView" class="view">
+        <div class="welcome-line"><div><p class="eyebrow">CHAPTER 08 · SECTIONS 05–10</p><h1>เรียนให้จำได้ <span class="highlight">ทีละบท 🌷</span></h1><p class="lead">อ่านสั้น ๆ → ตอบคำถาม → ได้ XP → เลี้ยงสัตว์และปลดล็อกเพื่อนใหม่</p></div><div class="progress-ring" aria-label="ความคืบหน้า"><span id="doneRing">0<small>/6</small></span></div></div>
+        <div class="course-progress"><div class="course-progress-header"><span>ความคืบหน้าทั้ง 6 โรค</span><strong id="coursePercent">0%</strong></div><div class="track"><div id="courseBar" class="track-fill"></div></div></div>
+        <div class="chapter-nav-wrap"><div class="section-small-title">เลือกบทเรียน <span>ทุกบทเปิดให้เรียนได้เลย</span></div><div id="chapterNav" class="chapter-nav" aria-label="เลือกบท"></div></div>
+        <div id="learningContent" aria-live="polite"></div>
+      </div>
+      <div id="petsView" class="view hidden"><div class="mode-intro"><p class="eyebrow">YOUR PET FAMILY</p><h1>บ้านของ <span class="highlight">น้องสัตว์ 🐾</span></h1><p class="lead">ตอบคำถามถูกเพื่อรับ XP น้องใหม่จะค่อย ๆ ปลดล็อกโดยไม่ต้องรีบอ่านข้ามบท</p></div><div id="petCollection" class="pet-collection"></div></div>
+      <div id="reviewView" class="view hidden"><div class="mode-intro"><p class="eyebrow">EXAM REVISION</p><h1>ทบทวนรวม <span class="highlight">6 โรค 🧠</span></h1><p class="lead">สรุปจุดต่างที่ออกสอบบ่อย และลองสุ่มคำถามจากทุกบท</p></div><div id="reviewContent"></div></div>
+    </section>
+
+    <aside class="pet-column" aria-label="สัตว์เลี้ยงของฉัน">
+      <div class="pet-card">
+        <div class="pet-card-top"><span class="live-label"><span class="live-dot"></span> MY STUDY BUDDY</span><span id="petSpeciesBadge" class="species-badge">🐱</span></div>
+        <div id="petStage" class="pet-stage" aria-label="สัตว์เลี้ยง 3 มิติ"><div class="stage-decor a"></div><div class="stage-decor b"></div><div id="petCanvasHost" class="pet-3d-host"><div id="petFallback" class="pet-fallback">🐱</div></div><div class="ground-shadow"></div><div class="pet-sparkle one">✦</div><div class="pet-sparkle two">✳</div><div class="pet-sparkle three">✧</div></div>
+        <div class="pet-details"><div class="pet-name-row"><div><p class="pet-helper">สัตว์เลี้ยงของฉัน</p><h2 id="petName">โมจิ <span>🐱</span></h2></div><span class="mini-level" id="petLevel">Lv.1</span></div><div class="stat-row"><span>💖 ความสุข</span><strong id="happyText">70%</strong></div><div class="track pink"><div id="happyBar" class="track-fill"></div></div><div class="stat-row second"><span>✨ XP เพื่อเลเวลถัดไป</span><strong id="xpNext">0/60</strong></div><div class="track"><div id="xpBar" class="track-fill"></div></div>
+          <div class="pet-actions"><button id="patBtn" type="button" class="action-btn purple">🤍 ลูบหัว</button><button id="feedBtn" type="button" class="action-btn peach">🍓 ให้อาหาร <span id="berriesCount">0</span></button></div>
+          <p id="petToast" class="pet-toast" aria-live="polite">เรียนด้วยกันนะ! ✨</p>
+        </div>
+        <div class="unlock-next" id="nextUnlock"></div>
+      </div>
+      <div class="source-note"><span>📚</span><div><strong>เนื้อหาจากสไลด์อาจารย์</strong><p>第八章 第五–十节 · ทบทวนเพื่อการศึกษา ไม่ใช่คำแนะนำรักษาผู้ป่วย</p></div></div>
+    </aside>
+  </main>
+  <footer>Made for learning · Source: 第八章（5–10节） · บันทึกความคืบหน้าในเบราว์เซอร์นี้</footer>
+</div>
+</body>
+</html>
